@@ -54,7 +54,11 @@ public class CardsApiController implements CardsApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Boolean>(objectMapper.readValue("true", Boolean.class), HttpStatus.NOT_IMPLEMENTED);
+                if(LuhnAlgo.isCCValid(cardNumber)){
+                    return new ResponseEntity<Boolean>(objectMapper.readValue("true", Boolean.class), HttpStatus.OK);
+                }else{
+                    return new ResponseEntity<Boolean>(objectMapper.readValue("false", Boolean.class), HttpStatus.OK);
+                }
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Boolean>(HttpStatus.INTERNAL_SERVER_ERROR);
