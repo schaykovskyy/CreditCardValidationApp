@@ -2,42 +2,27 @@ package io.swagger.api;
 
 import io.swagger.model.Card;
 import io.swagger.model.Cards;
-import io.swagger.model.Error;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-08-29T17:28:16.715952712Z[GMT]")
@@ -84,8 +69,8 @@ public class CardsApiController implements CardsApi {
                 Connection conn = connector.getConnection();
                 Statement stmt = conn.createStatement();
 
-                String query = String.format("INSERT INTO Cards (card_number, first_name, last_name, expiration, cvc, added_on, deactivated_on) VALUES ('%s', '%s', '%s', '%s', '%s', now(),NULL;",card.getCardNumber(),card.getFirstName(),card.getFirstName(),card.getExpiration(),card.getCvc());
-                ResultSet rs = stmt.executeQuery(query);
+                String query = String.format("INSERT INTO Cards (card_number, first_name, last_name, expiration, cvc, added_on, deactivated_on) VALUES ('%s', '%s', '%s', '%s', '%s', now() ,NULL);",card.getCardNumber(),card.getFirstName(),card.getFirstName(),card.getExpiration(),card.getCvc());
+                stmt.executeUpdate(query);
                 return ResponseEntity.status(HttpStatus.CREATED).build();
             } catch (Exception e) {
                 log.error("Error creating credit card", e);

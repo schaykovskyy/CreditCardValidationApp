@@ -34,7 +34,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-08-29T17:28:16.715952712Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-08-30T00:50:15.501206697Z[GMT]")
 @Validated
 public interface CardsApi {
 
@@ -56,8 +56,9 @@ public interface CardsApi {
         @ApiResponse(responseCode = "200", description = "unexpected error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))) })
     @RequestMapping(value = "/cards",
         produces = { "application/json" }, 
+        consumes = { "application/json", "application/xml" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Void> createCards();
+    ResponseEntity<Void> createCards(@Parameter(in = ParameterIn.DEFAULT, description = "Credit card that needs to be added to db", required=true, schema=@Schema()) @Valid @RequestBody Card body);
 
 
     @Operation(summary = "List all credit cards", description = "", tags={ "cards" })

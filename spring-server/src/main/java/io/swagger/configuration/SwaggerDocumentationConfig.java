@@ -13,7 +13,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-08-29T17:28:16.715952712Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-08-30T00:50:15.501206697Z[GMT]")
 @Configuration
 public class SwaggerDocumentationConfig {
 
@@ -35,7 +35,7 @@ public class SwaggerDocumentationConfig {
             .license("")
             .licenseUrl("http://unlicense.org")
             .termsOfServiceUrl("")
-            .version("1.0.0")
+            .version("1")
             .contact(new Contact("","", ""))
             .build();
     }
@@ -47,7 +47,7 @@ public class SwaggerDocumentationConfig {
                 .title("Credit Card Validation System")
                 .description("RESTful API that manage credit cards")
                 .termsOfService("")
-                .version("1.0.0")
+                .version("1")
                 .license(new License()
                     .name("")
                     .url("http://unlicense.org"))
