@@ -69,7 +69,7 @@ public class CardsApiController implements CardsApi {
                 Connection conn = connector.getConnection();
                 Statement stmt = conn.createStatement();
 
-                String query = String.format("INSERT INTO Cards (card_number, first_name, last_name, expiration, cvc, added_on, deactivated_on) VALUES ('%s', '%s', '%s', '%s', '%s', now() ,NULL);",card.getCardNumber(),card.getFirstName(),card.getFirstName(),card.getExpiration(),card.getCvc());
+                String query = String.format("INSERT INTO Cards (card_number, first_name, last_name, expiration, cvc, added_on, deactivated_on) VALUES ('%s', '%s', '%s', '%s', '%s', now() ,NULL);",card.getCardNumber(),card.getFirstName(),card.getLastName(),card.getExpiration(),card.getCvc());
                 stmt.executeUpdate(query);
                 return ResponseEntity.status(HttpStatus.CREATED).build();
             } catch (Exception e) {
@@ -99,9 +99,9 @@ public class CardsApiController implements CardsApi {
                     Card card = new Card();
                     card.setCvc(rs.getString("cvc"));
                     card.setCardNumber(rs.getString("card_number"));
+                    card.setFirstName(rs.getString("first_name"));
                     card.setLastName(rs.getString("last_name"));
                     card.setExpiration(rs.getLong("expiration"));
-                    card.setFirstName(rs.getString("first_name"));
                     listOfCards.add(card);
                 }
 
@@ -131,9 +131,9 @@ public class CardsApiController implements CardsApi {
                     Card card = new Card();
                     card.setCvc(rs.getString("cvc"));
                     card.setCardNumber(rs.getString("card_number"));
+                    card.setFirstName(rs.getString("first_name"));
                     card.setLastName(rs.getString("last_name"));
                     card.setExpiration(rs.getLong("expiration"));
-                    card.setFirstName(rs.getString("first_name"));
                     return ResponseEntity.ok(card);
                 } else{
                     return ResponseEntity.notFound().build();
